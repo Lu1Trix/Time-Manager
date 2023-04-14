@@ -1,0 +1,21 @@
+// Registrar Información Archivos:
+
+	*Cursos:
+		-Codigo.
+		-Nombre.
+		-Horas de clases.
+		-Horas de estudio.
+		-Creditos.
+		-Horarios del curso.
+
+// Gestionar jornadas de estudio. 
+
+	*Según con a la Información establecer posibles
+	 horas de estudio.
+	
+-Bienvenida a la aplicación.
+-Recolectar la información a travez del Archivo.
+-Mostrar un horario preeliminar.
+-Preguntarle al usuario sobre las posibles horas de estudio.
+-Colocar el horario establecido.
+-Colocar el horario en un archivo.
