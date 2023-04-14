@@ -2,20 +2,51 @@
 
 	*Cursos:
 		-Codigo.
-		-Nombre.
+		-Nombre del curso.
 		-Horas de clases.
 		-Horas de estudio.
 		-Creditos.
 		-Horarios del curso.
+		
+		// Se usara un archivo TxT el cual contendra cada uno de la información antes mencionada de las materias de Ing. Electronica.
+		// Formato de los cursos en el archivo:
+		
+		Código,Nombre,Horas de Clases,créditos;\n
 
 // Gestionar jornadas de estudio. 
 
-	*Según con a la Información establecer posibles
+	*Según a la Información establecer posibles
 	 horas de estudio.
 	
+	*Calcular la cantidad de horas de estudio requeridas.
+
+
+
+
+// Boceto para la aplicación.
+	
 -Bienvenida a la aplicación.
--Recolectar la información a travez del Archivo.
+
+-Recolectar la información a través del Archivo.
+
+	[1]* Lee el  archivo de todas las materias de Ing. Electrónica.	
+	[2]* Almacenar información de las materias Ing. Electrónica, en una base de datos (Matriz).
+	[3]* Preguntar al usuario aquellas materias que posee con su respectivo horario.
+	[3.1]* Comprobar que la materia exista en el pensúm y que los horarios no se sobrepogan.
+	[4]* Almacenar la información (Matriz). 
+
 -Mostrar un horario preeliminar.
--Preguntarle al usuario sobre las posibles horas de estudio.
+	
+	*Mostrar horario preeliminar hora a hora de lunes a domingo según las materias y el horario ya registrado.
+
+-Asignación horas de estudio.
+	
+	[1]* Calcular las horas de estudio necesarias de cada materia colocada.
+	[2]* Según las horas de estudio calculadas preguntarle al usuario intervalos de tiempo en donde él desee estudiar y que no interfieran con el horario preelimnar.
+	[3]* Asignar dicho intervalo de estudio; Este intervalo de tiempo ya no podra ser ocupado.
+	[4]* Repetir proceso hasta completar cada horario de estudio de todas la materias que el usuario asignó.
+	[5]* Mostrarle el horario completado.
+
 -Colocar el horario establecido.
+
 -Colocar el horario en un archivo.
