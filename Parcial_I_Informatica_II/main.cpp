@@ -52,6 +52,22 @@ int main()
         else Estudio[C] = ((atoi(Pensúm[buscar_entero_pensum(Matriculadas[C], Pensúm)][2]) * 48)/16) - atoi(Pensúm[buscar_entero_pensum(Matriculadas[C], Pensúm)][3]);
     }
 
+    folder.open("EstudiarMaterias.txt");
+    //      *Creación estructura de datos;
+    for (C = 0; C < 46; C++){
+        folder.getline(Lectura, 65);
+        Pensúm[C][0] = SeparadorFrases(1, Lectura);
+        Pensúm[C][1] = SeparadorFrases(2, Lectura);
+        Pensúm[C][2] = SeparadorFrases(3, Lectura);
+        Pensúm[C][3] = SeparadorFrases(4, Lectura);
+    }
+    folder.close();
+
+    Horario = RegistrarHorasDeEstudio(Materias, Matriculadas, Horario, Estudio, Pensúm);
+
+    MostrarHorario(Pensúm, Horario);
+
+
 
 
 
