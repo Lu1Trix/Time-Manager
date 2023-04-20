@@ -7,14 +7,15 @@ using namespace std;
 
 // *Mostrar una imagen en consola;
 void Picazo( const char* TxT ){
-
+    cout << " -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-" << endl;
     ifstream folder; char Pixel;
     folder.open(TxT);
     while(folder.get(Pixel)){
         cout << Pixel;
     }
+    cout << endl;
     folder.close();
-
+    cout << " -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 }
 // *Obtener un fragmento de un arreglo de caracteres;
 char * SeparadorFrases(int n, const char* texto) {
@@ -43,7 +44,7 @@ char * SeparadorFrases(int n, const char* texto) {
     return resultado;
 }
 // *Verificar sí una materia pertenece o no al Pensúm;
-int buscar_entero_pensum(int entero_buscado, char* Pensum[][5]){
+int buscar_entero_pensum(int entero_buscado, char* Pensum[][4]){
 
     for(int i = 0; i < 46; i++){
 
@@ -54,10 +55,10 @@ int buscar_entero_pensum(int entero_buscado, char* Pensum[][5]){
     return -1;
 }
 // *Obtener la lista de materias matriculadas;
-int * ListaMaterias( char* Pensúm[][5], unsigned int Materias){
+long int * ListaMaterias( char* Pensúm[][4], long int Materias){
 
-    unsigned int Contador; bool Permitida = true; long int Entrada; int Posición;
-    int* Resultante = new long int[Materias];
+    long int Contador = 0; bool Permitida = true; long int Entrada; int Posición;
+    long int* Resultante = new long int[Materias];
     for (int C = 0; C < Materias; C++){
         Resultante[0] = 0;
     }
@@ -68,7 +69,7 @@ int * ListaMaterias( char* Pensúm[][5], unsigned int Materias){
         cin >> Entrada;
         Permitida = true;
 
-        for (int C = 0; C < Materias; C++) {
+        for (long int C = 0; C < Materias; C++) {
             if (Entrada == Resultante[C]){
                 Permitida = false;
             }
@@ -80,7 +81,7 @@ int * ListaMaterias( char* Pensúm[][5], unsigned int Materias){
 
             }
             else{
-                cout << "[-> La materia " << Pensúm[Posición][1] << " fue agrega correctamente.\n";
+                cout << "[-> La materia" << Pensúm[Posición][1] << " fue agregada correctamente.\n";
                 Resultante[Contador] = Entrada;
                 Contador++;
 
@@ -92,5 +93,157 @@ int * ListaMaterias( char* Pensúm[][5], unsigned int Materias){
     return Resultante;
 
 }
+// *Obtener el horario de clases;
+int ** RegistrarHorario( int n, long int * Matriculadas, char * Pensum[][4]){
+
+    int **Horario = new int *[7];
+    for(int i = 0; i < 7; i++){
+        Horario[i] = new int[24];
+        for(int j = 0; j < 24; j++){
+            Horario[i][j] = 0;
+        }
+    }
+
+    bool Flag = false; int Respuesta, Respuesta2; int MateriaElegida, HoraInicial, HoraFinal, HoraIntermedia;
+    const char * dias[7] = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"};
+    bool Flag2 = false, Flag3 = false;
+
+    while(Flag == false){
+
+        for(int i = 0; i < 7; i++){
+
+            Flag2 = false; Flag3 = false;
+            Respuesta = -1; Respuesta2 = -1;
+
+
+            while(Flag2 == false){
+
+                cout << endl << "Escoja las materias que le tocan los " << dias[i] << ":" << endl;
+                cout << endl <<"0) Ninguna " << endl;
+
+                for(int j = 0; j < n; j++){
+
+                    int Entrada = Matriculadas[j];
+                    int Posición = buscar_entero_pensum(Entrada, Pensum);
+
+
+                    cout << j + 1 << ")" << " " << Pensum[Posición][1] << "." << endl;
+
+
+                }
+
+                cin >> Respuesta;
+
+                if(Respuesta == 0){
+                    Flag2 = true;
+                }
+
+                else{
+
+                    MateriaElegida = Matriculadas[Respuesta - 1];
+
+
+                    while(Flag3 == false){
+
+                        cout << endl << "Ingrese la hora inicial de " << Pensum[buscar_entero_pensum(MateriaElegida, Pensum)][1] << ":" << endl;
+                        cin >> HoraInicial;
+                        cout << endl << "Ingrese la hora final de " << Pensum[buscar_entero_pensum(MateriaElegida, Pensum)][1] << ":" << endl;
+                        cin >> HoraFinal;
+
+                        if(Horario[i][HoraInicial] > 0){
+
+                            cout << endl <<"Este intervalo de tiempo ya esta asignado, ingrese uno valido" << endl;
+                        }
+
+                        else if(Horario[i][HoraFinal] > 0 ){
+
+                            cout << endl << "Este intervalo de tiempo ya esta asignado, ingrese uno valido" << endl;
+                        }
+
+                        else if(Horario[i][(HoraInicial+HoraFinal)/2] > 0){
+                            cout << endl << "Este intervalo de tiempo ya esta asignado, ingrese uno valido" << endl;
+                        }
+                        else if(HoraInicial > HoraFinal || HoraFinal == HoraInicial){
+                            cout << endl << "Coloque un intervalo de horas valido" << endl;
+                        }
+                        else{ Flag3 = true; }
+
+                    }
+
+                    HoraFinal--;
+                    Flag3 = false;
+
+                    Horario[i][HoraInicial] = MateriaElegida;
+                    Horario[i][HoraFinal] = MateriaElegida;
+                    HoraIntermedia = (HoraInicial + HoraFinal)/2;
+
+                    if((HoraFinal-HoraInicial) != 1){
+                        for(int k = HoraInicial + 1; k < HoraFinal; k++){
+                            Horario[i][k] = MateriaElegida;
+                        }
+                    }
+
+
+                    cout << endl << "Necesita ingresar otra materia? " << "[1] Si  [2] No" << endl;
+                    cin >> Respuesta2;
+
+                    if(Respuesta2 == 1){ Flag2 = false; }
+                    else Flag2 = true;
+
+
+                }
+
+
+
+            }
+
+
+
+
+
+            Flag = true;
+
+        }
+    }
+
+
+
+    return Horario;
+}
+// *Mostrar el horario del usuario;
+void MostrarHorario( char * Pensum[][4], int** Horario){
+    const char * dias[7] = {" -------LUNES-------", " -------MARTES------", " -----MIERCOLES-----", " -------JUEVES------", " ------VIERNES------", " -------SABADO------", " ------DOMINGO------"}; int C; int K;
+    long int Posición;
+    cout << "     ";
+    for (C = 0; C < 7; C++){
+        cout << dias[C];
+    }
+    cout << endl;
+
+
+    for (K = 0; K < 24; K++){
+        cout << K << ":00";
+        if (K < 10){
+            cout << " ";
+        }
+        for (C = 0; C < 7; C++){
+            Posición = buscar_entero_pensum(Horario[C][K], Pensum);
+            if (Posición == -1){
+                cout << " -------------------";
+            }
+            else{
+                cout << Pensum[Posición][1];
+            }
+        }
+        cout << endl;
+    }
+
+}
+// *Sistema de recomendaciones para las horas de estudio;
+void Recomendaciones( int** Horario, int Dia, int Horas_Semanales){
+    int T_E_D = Horas_Semanales/(7-Dia); int C;
+
+}
+
 
 #endif // FUNCIONES_H

@@ -101,7 +101,7 @@ compiler_clean:
 
 ####### Compile
 
-debug/main.o: ../Parcial_I_Informatica_II/main.cpp 
+debug/main.o: ../Parcial_I_Informatica_II/main.cpp ../Parcial_I_Informatica_II/Funciones.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\Parcial_I_Informatica_II\main.cpp
 
 ####### Install

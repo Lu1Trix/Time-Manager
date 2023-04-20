@@ -315,6 +315,7 @@ Makefile: ../Parcial_I_Informatica_II/Parcial_I_Informatica_II.pro ../../../../Q
 		../../../../Qt/6.4.2/mingw_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/6.4.2/mingw_64/mkspecs/win32-g++/qmake.conf \
 		../../../../Qt/6.4.2/mingw_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../Qt/6.4.2/mingw_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/6.4.2/mingw_64/mkspecs/features/toolchain.prf \
 		../../../../Qt/6.4.2/mingw_64/mkspecs/features/default_pre.prf \
@@ -334,7 +335,6 @@ Makefile: ../Parcial_I_Informatica_II/Parcial_I_Informatica_II.pro ../../../../Q
 		../../../../Qt/6.4.2/mingw_64/mkspecs/features/yacc.prf \
 		../../../../Qt/6.4.2/mingw_64/mkspecs/features/lex.prf \
 		../Parcial_I_Informatica_II/Parcial_I_Informatica_II.pro \
-		.qmake.stash \
 		../../../../Qt/6.4.2/mingw_64/mkspecs/features/build_pass.prf
 	$(QMAKE) -o Makefile ..\Parcial_I_Informatica_II\Parcial_I_Informatica_II.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 ../../../../Qt/6.4.2/mingw_64/mkspecs/features/spec_pre.prf:
@@ -582,6 +582,7 @@ Makefile: ../Parcial_I_Informatica_II/Parcial_I_Informatica_II.pro ../../../../Q
 ../../../../Qt/6.4.2/mingw_64/mkspecs/features/qt_config.prf:
 ../../../../Qt/6.4.2/mingw_64/mkspecs/win32-g++/qmake.conf:
 ../../../../Qt/6.4.2/mingw_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../Qt/6.4.2/mingw_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt/6.4.2/mingw_64/mkspecs/features/toolchain.prf:
 ../../../../Qt/6.4.2/mingw_64/mkspecs/features/default_pre.prf:
@@ -601,7 +602,6 @@ Makefile: ../Parcial_I_Informatica_II/Parcial_I_Informatica_II.pro ../../../../Q
 ../../../../Qt/6.4.2/mingw_64/mkspecs/features/yacc.prf:
 ../../../../Qt/6.4.2/mingw_64/mkspecs/features/lex.prf:
 ../Parcial_I_Informatica_II/Parcial_I_Informatica_II.pro:
-.qmake.stash:
 ../../../../Qt/6.4.2/mingw_64/mkspecs/features/build_pass.prf:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\Parcial_I_Informatica_II\Parcial_I_Informatica_II.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
