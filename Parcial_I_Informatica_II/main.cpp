@@ -5,6 +5,7 @@ using namespace std;
 
 int main()
 {
+
     // [1] Extración materias pensúm Ing. Electrónica;
     //      *Apertura y lectura de archivo;
 
@@ -26,6 +27,7 @@ int main()
 
     Picazo("Arte.txt");
     cout << endl;
+
 
     // [3] Asignación materias matriculadas con su horario;
     //      *Cantidad de materias matriculadas;
@@ -61,8 +63,12 @@ int main()
 
     CrearHorario(Pensúm, Horario);
 
-
-
-
-
 }
+
+
+
+
+
+
+
+

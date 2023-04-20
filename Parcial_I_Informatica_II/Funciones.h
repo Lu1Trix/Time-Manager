@@ -84,7 +84,7 @@ long int * ListaMaterias( char* Pensúm[][4], long int Materias){
     for (int C = 0; C < Materias; C++){
         Resultante[0] = 0;
     }
-
+    cout << " -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-" << endl;
     cout << "[-> Una a una coloca el codigo de cada materia matriculada\n";
     while (Contador < Materias){
         cout << "[-> ";
@@ -108,6 +108,7 @@ long int * ListaMaterias( char* Pensúm[][4], long int Materias){
                 Contador++;
 
             }
+            cout << " -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 
         }
         else cout << "[-> No se aceptan materias duplicadas, selecciona una distinta.\n";
@@ -139,7 +140,7 @@ int ** RegistrarHorario( int n, long int * Matriculadas, char * Pensum[][4]){
 
 
             while(Flag2 == false){
-
+                cout << " -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-" << endl;
                 cout << endl << "Escoja las materias que le tocan los " << dias[i] << ":" << endl;
                 cout << endl <<"0) Ninguna " << endl;
 
@@ -234,6 +235,7 @@ int ** RegistrarHorario( int n, long int * Matriculadas, char * Pensum[][4]){
 }
 // *Mostrar el horario del usuario;
 void MostrarHorario( char * Pensum[][4], int** Horario){
+    cout << " -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-" << endl;
     const char * dias[7] = {" -------LUNES-------", " -------MARTES------", " -----MIERCOLES-----", " -------JUEVES------", " ------VIERNES------", " -------SABADO------", " ------DOMINGO------"}; int C; int K;
     long int Posición;
     cout << "     ";
@@ -259,12 +261,12 @@ void MostrarHorario( char * Pensum[][4], int** Horario){
         }
         cout << endl;
     }
-
+    cout << " -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+EST:ESTUDIAR+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 }
 // *Sistema de recomendaciones para las horas de estudio;
 void Recomendaciones( int** Horario, int Dia, int Horas_Semanales){
     int T_E_D ; int C; int Horas_Disponibles = 0; int Horas_Sueño; bool Continuar;
-    const char * dias[7] = {"LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES ", "SABADO", "DOMINGO"};
+    const char * dias[7] = {"LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES ", "SABADOS", "DOMINGOS"};
     int Count = 0; int MIN = 6;
 
     if (Horas_Semanales/(7) < 2){
@@ -320,7 +322,7 @@ void Recomendaciones( int** Horario, int Dia, int Horas_Semanales){
                 Count = 0;
             }
             if (Count == T_E_D){
-                cout << "[-> Te recomiendo elegir alguna hora de estudio dentro de este intervalo: " << MIN-T_E_D << "-" << MIN << endl;
+                cout << "[-> Te recomiendo elegir alguna hora de estudio dentro de este intervalo: " << MIN-T_E_D+1 << "-" << MIN << endl;
                 cout << "[-> Te ayudara a concentrarte mejor." << endl;
             }
             if (MIN > 18){
@@ -343,7 +345,7 @@ int ** RegistrarHorasDeEstudio( int n, long int * Matriculadas, int ** Horario, 
         cout << endl << i + 1 << ")" << Pensum[Posicion][1] << ":" << HorasActual << endl;
     }
 
-    cout << n + 1 << ") " << "Horas totales" << ":" << HorasTotales << endl;
+    cout << endl << n + 1 << ") " << "Horas totales" << ":" << HorasTotales << endl;
 
     HorasRestantes = HorasTotales;
 
@@ -361,7 +363,7 @@ int ** RegistrarHorasDeEstudio( int n, long int * Matriculadas, int ** Horario, 
                 Flag2 = false; Flag3 = false;
                 Respuesta = -1; Respuesta2 = -1;
 
-
+                cout << " -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 
                 Recomendaciones(Horario, i, HorasRestantes);
                 while(Flag2 == false){
@@ -394,14 +396,14 @@ int ** RegistrarHorasDeEstudio( int n, long int * Matriculadas, int ** Horario, 
 
                         while(Flag3 == false){
 
-                            cout << endl << "Ingrese la hora inicial para estudiar " << Pensum[buscar_entero_pensum(MateriaElegida, Pensum)][1] << ":    ";
-                            cout << "Tenga en cuenta que para " << Pensum[buscar_entero_pensum(MateriaElegida, Pensum)][1] << " quedan " << HorasActual << " horas asignables " << endl;
+                            cout << endl << "Ingrese la hora inicial para estudiar " << Pensum[buscar_entero_pensum(MateriaElegida, Pensum)][1] << ":    " << endl;
+                            cout << "[-> Tenga en cuenta que para " << Pensum[buscar_entero_pensum(MateriaElegida, Pensum)][1] << " quedan " << HorasActual << " horas asignables " << endl;
 
                             cin >> HoraInicial;
                             cout << endl << "Ingrese la hora final" << ":" << endl;
                             cin >> HoraFinal;
 
-                            cout << "Esto es una prueba " << Horario[i][HoraInicial] << endl;
+
                             if(Horario[i][HoraInicial] > 0){
 
                                 cout << endl <<"Este intervalo de tiempo ya esta asignado, ingrese uno valido" << endl;
