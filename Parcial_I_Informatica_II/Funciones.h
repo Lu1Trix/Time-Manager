@@ -46,7 +46,7 @@ char * SeparadorFrases(int n, const char* texto) {
 // *Verificar sí una materia pertenece o no al Pensúm;
 int buscar_entero_pensum(int entero_buscado, char* Pensum[][4]){
 
-    for(int i = 0; i < 46; i++){
+    for(int i = 0; i < 92; i++){
 
         if(atoi(Pensum[i][0]) == entero_buscado){
             return i;
@@ -243,7 +243,7 @@ void MostrarHorario( char * Pensum[][4], int** Horario){
 void Recomendaciones( int** Horario, int Dia, int Horas_Semanales){
     int T_E_D = Horas_Semanales/(7-Dia); int C; int Horas_Disponibles = 0; int Horas_Sueño; bool Continuar;
     const char * dias[7] = {"LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES ", "SABADO", "DOMINGO"};
-    int MAX = 12; int MIN = 6;
+    int MAX = 6; int MIN = 6;
     for (C = 0; C < 24; C++){
         if (Horario[Dia][C] == 0){
             Horas_Disponibles++;
@@ -273,9 +273,18 @@ void Recomendaciones( int** Horario, int Dia, int Horas_Semanales){
         cout << "[-> WoW... Parece que hoy estas muy ocupado, aprovecha tu tiempo para dormir" << endl;
     }
     else{
-        Continuar = true;
-        cout << "[-> Este es el plan hoy: " << endl;
-        cout << "[-> Duerme " << Horas_Sueño << " horas";
+        cout << "[-> Este es el plan hoy: " << " Duerme " << Horas_Sueño << " horas y estudia " << T_E_D << " horas" << endl;
+        Continuar = false;
+        for (MIN = 6; MIN < 16; MIN++){
+            for (MAX = MIN; MAX < 20; MAX++){
+                if (Horario[Dia][MAX] != 0){
+                    break;
+                }
+                if (MAX - MIN == T_E_D){
+                    cout << "[-> " << MIN << "-" << MAX << endl;
+                }
+            }
+        }
     }
 }
 // *Registrar horas de estudio;
@@ -296,7 +305,7 @@ int ** RegistrarHorasDeEstudio( int n, long int * Matriculadas, int ** Horario, 
 
     HorasRestantes = HorasTotales;
 
-    while(HorasRestantes != 0){
+    while(HorasRestantes > 0){
 
 
         bool Flag = false; int Respuesta, Respuesta2; int MateriaElegida, HoraInicial, HoraFinal;
@@ -322,11 +331,11 @@ int ** RegistrarHorasDeEstudio( int n, long int * Matriculadas, int ** Horario, 
                         int Posición = buscar_entero_pensum(Entrada, Pensum);
 
 
-                        cout << j + 1 << ")" << " " << Pensum[Posición][1] << "." << endl;
+                        cout << j + 1 << ")" << " " << Pensum[Posición][1] << ".";
 
 
                     }
-
+                    cout << endl;
                     cin >> Respuesta;
 
                     MateriaElegida = Matriculadas[Respuesta - 1];
@@ -341,13 +350,14 @@ int ** RegistrarHorasDeEstudio( int n, long int * Matriculadas, int ** Horario, 
 
                         while(Flag3 == false){
 
-                            cout << endl << "Ingrese la hora inicial para estudiar " << Pensum[buscar_entero_pensum(MateriaElegida, Pensum)][1] << ":" << endl;
-                            cout << "Tenga en cuenta que para " << Pensum[buscar_entero_pensum(MateriaElegida, Pensum)][1] << "quedan " << HorasActual << " horas asignables ";
+                            cout << endl << "Ingrese la hora inicial para estudiar " << Pensum[buscar_entero_pensum(MateriaElegida, Pensum)][1] << ":    ";
+                            cout << "Tenga en cuenta que para " << Pensum[buscar_entero_pensum(MateriaElegida, Pensum)][1] << " quedan " << HorasActual << " horas asignables " << endl;
 
                             cin >> HoraInicial;
                             cout << endl << "Ingrese la hora final" << ":" << endl;
                             cin >> HoraFinal;
 
+                            cout << "Esto es una prueba " << Horario[i][HoraInicial] << endl;
                             if(Horario[i][HoraInicial] > 0){
 
                                 cout << endl <<"Este intervalo de tiempo ya esta asignado, ingrese uno valido" << endl;
@@ -378,17 +388,19 @@ int ** RegistrarHorasDeEstudio( int n, long int * Matriculadas, int ** Horario, 
                         HoraFinal--;
                         Flag3 = false;
 
-                        Horario[i][HoraInicial] = MateriaElegida;
-                        Horario[i][HoraFinal] = MateriaElegida;
+                        Horario[i][HoraInicial] = -MateriaElegida;
+                        Horario[i][HoraFinal] = -MateriaElegida;
 
                         if((HoraFinal-HoraInicial) != 1){
                             for(int k = HoraInicial + 1; k < HoraFinal; k++){
-                                Horario[i][k] = MateriaElegida;
+                                Horario[i][k] = -MateriaElegida;
                             }
                         }
 
-                        Estudio[Respuesta - 1] = (HorasActual - (HoraFinal - HoraInicial));
-                        HorasRestantes = (HorasActual - (HoraFinal - HoraInicial));
+                        Estudio[Respuesta - 1] = (HorasActual - (HoraFinal + 1 - HoraInicial));
+                        HorasRestantes = (HorasRestantes - (HoraFinal + 1 - HoraInicial));
+
+                        if(HorasRestantes < 1){ i = 8; break;}
 
                         cout << endl << "Desea ingresar otro intervalo de estudio? " << "[1] Si  [2] No" << endl;
                         cin >> Respuesta2;
@@ -405,9 +417,11 @@ int ** RegistrarHorasDeEstudio( int n, long int * Matriculadas, int ** Horario, 
                 }
 
 
-                Flag = true;
+
 
             }
+
+            Flag = true;
         }
 
 
