@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 9.0.1, 2023-04-20T15:55:51. -->
+<!-- Written by QtCreator 9.0.1, 2023-04-20T16:04:14. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -236,8 +236,9 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/Lu1sA/Desktop/Parcial_I_Informatica_II/Parcial_I_Informatica_II.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Lu1sA/Desktop/Parcial_I_Informatica_II/Parcial_I_Informatica_II.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Parcial_I_Informatica_II2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/Lu1sA/Desktop/CarpetaDePrueba/Time-Manager/Parcial_I_Informatica_II/Parcial_I_Informatica_II.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Lu1sA/Desktop/CarpetaDePrueba/Time-Manager/Parcial_I_Informatica_II/Parcial_I_Informatica_II.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>

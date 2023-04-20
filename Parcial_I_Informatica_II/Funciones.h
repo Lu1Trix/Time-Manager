@@ -127,7 +127,7 @@ int ** RegistrarHorario( int n, long int * Matriculadas, char * Pensum[][4]){
         }
     }
 
-    bool Flag = false; int Respuesta, Respuesta2; int MateriaElegida, HoraInicial, HoraFinal, HoraIntermedia;
+    bool Flag = false; int Respuesta, Respuesta2; int MateriaElegida, HoraInicial, HoraFinal;
     const char * dias[7] = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"};
     bool Flag2 = false, Flag3 = false;
 
@@ -198,7 +198,6 @@ int ** RegistrarHorario( int n, long int * Matriculadas, char * Pensum[][4]){
 
                     Horario[i][HoraInicial] = MateriaElegida;
                     Horario[i][HoraFinal] = MateriaElegida;
-                    HoraIntermedia = (HoraInicial + HoraFinal)/2;
 
                     if((HoraFinal-HoraInicial) != 1){
                         for(int k = HoraInicial + 1; k < HoraFinal; k++){
