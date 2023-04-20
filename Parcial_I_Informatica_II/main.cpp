@@ -49,8 +49,8 @@ int main()
     int* Estudio = new int[Materias];
 
     for (C = 0; C < Materias; C++){
-        if (((atoi(Pensúm[buscar_entero_pensum(Matriculadas[C], Pensúm)][2]) * 48)/16) - atoi(Pensúm[buscar_entero_pensum(Matriculadas[C], Pensúm)][3]) < 0) Estudio[C] = 0;
-        else Estudio[C] = ((atoi(Pensúm[buscar_entero_pensum(Matriculadas[C], Pensúm)][2]) * 48)/16) - atoi(Pensúm[buscar_entero_pensum(Matriculadas[C], Pensúm)][3]);
+        if (((acti(Pensúm[buscar_entero_pensum(Matriculadas[C], Pensúm)][2]) * 48)/16) - acti(Pensúm[buscar_entero_pensum(Matriculadas[C], Pensúm)][3]) < 0) Estudio[C] = 0;
+        else Estudio[C] = ((acti(Pensúm[buscar_entero_pensum(Matriculadas[C], Pensúm)][2]) * 48)/16) - acti(Pensúm[buscar_entero_pensum(Matriculadas[C], Pensúm)][3]);
     }
 
     Horario = RegistrarHorasDeEstudio(Materias, Matriculadas, Horario, Estudio, Pensúm);

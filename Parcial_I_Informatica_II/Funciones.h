@@ -4,7 +4,29 @@
 #include <iostream>
 #include <fstream>
 using namespace std;
+// Convertir un char* a entero;
+long int acti(char* Letras){
 
+    int C = 0; bool Negative = false; long int Resultado = 0;
+    while ((Letras[C] >= 48 && Letras[C] <= 57) || Letras[C] == 45){
+        C++;
+    }
+
+    if (Letras[0] == 45){
+        Negative = true;
+    }
+
+    for (int var = 0; var < C; var++){
+        if (Letras[var] != 45){
+            Resultado = (Letras[var]+-48)+(Resultado*10);
+        }
+    }
+
+    if (Negative){
+        Resultado *= -1;
+    }
+    return Resultado;
+}
 // *Mostrar una imagen en consola;
 void Picazo( const char* TxT ){
     cout << " -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-" << endl;
@@ -48,7 +70,7 @@ int buscar_entero_pensum(int entero_buscado, char* Pensum[][4]){
 
     for(int i = 0; i < 92; i++){
 
-        if(atoi(Pensum[i][0]) == entero_buscado){
+        if(acti(Pensum[i][0]) == entero_buscado){
             return i;
         }
     }
