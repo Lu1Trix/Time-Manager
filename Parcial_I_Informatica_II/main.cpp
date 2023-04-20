@@ -59,7 +59,7 @@ int main()
 
     MostrarHorario(Pensúm, Horario);
 
-
+    CrearHorario(Pensúm, Horario);
 
 
 

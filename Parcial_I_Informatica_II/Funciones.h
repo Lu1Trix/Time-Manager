@@ -263,17 +263,24 @@ void MostrarHorario( char * Pensum[][4], int** Horario){
 }
 // *Sistema de recomendaciones para las horas de estudio;
 void Recomendaciones( int** Horario, int Dia, int Horas_Semanales){
-    int T_E_D = Horas_Semanales/(7-Dia); int C; int Horas_Disponibles = 0; int Horas_Sueño; bool Continuar;
+    int T_E_D ; int C; int Horas_Disponibles = 0; int Horas_Sueño; bool Continuar;
     const char * dias[7] = {"LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES ", "SABADO", "DOMINGO"};
-    int MAX = 6; int MIN = 6;
+    int Count = 0; int MIN = 6;
+
+    if (Horas_Semanales/(7) < 2){
+        T_E_D = Horas_Semanales;
+    }
+    else T_E_D = Horas_Semanales/(7);
     for (C = 0; C < 24; C++){
         if (Horario[Dia][C] == 0){
             Horas_Disponibles++;
         }
     }
+
     cout << "[-> " << dias[Dia] << ":" << endl;
     if (T_E_D > 5){
         cout << "[-> Al parecer tu horario te exige estudiar hoy [" << T_E_D << "] horas... Por tu bienestar te recomiendo disminuirlo " << endl;
+        T_E_D = 5;
     }
     //Toma de recomendaciones
     if (Horas_Disponibles > 8){
@@ -291,27 +298,40 @@ void Recomendaciones( int** Horario, int Dia, int Horas_Semanales){
             }
         }
     }
+    if (Horas_Sueño > 8){
+        Horas_Sueño = 8;
+        Horas_Disponibles - 8;
+        cout << "Tienes bastante tiempo para dormir" << endl;
+    }
+    while (Horas_Disponibles < T_E_D){
+        T_E_D--;
+    }
     if (Continuar){
         cout << "[-> WoW... Parece que hoy estas muy ocupado, aprovecha tu tiempo para dormir" << endl;
     }
     else{
         cout << "[-> Este es el plan hoy: " << " Duerme " << Horas_Sueño << " horas y estudia " << T_E_D << " horas" << endl;
-        Continuar = false;
-        for (MIN = 6; MIN < 16; MIN++){
-            for (MAX = MIN; MAX < 20; MAX++){
-                if (Horario[Dia][MAX] != 0){
-                    break;
-                }
-                if (MAX - MIN == T_E_D){
-                    cout << "[-> " << MIN << "-" << MAX << endl;
-                }
+        Continuar = true;
+        while (Continuar){
+            if (Horario[Dia][MIN] == 0){
+                Count++;
             }
+            else{
+                Count = 0;
+            }
+            if (Count == T_E_D){
+                cout << "[-> Te recomiendo elegir alguna hora de estudio dentro de este intervalo: " << MIN-T_E_D << "-" << MIN << endl;
+                cout << "[-> Te ayudara a concentrarte mejor." << endl;
+            }
+            if (MIN > 18){
+                break;
+            }
+            MIN++;
         }
     }
 }
 // *Registrar horas de estudio;
 int ** RegistrarHorasDeEstudio( int n, long int * Matriculadas, int ** Horario, int* Estudio, char* Pensum[][4]){
-
 
     cout << endl << "Horas de estudio" << endl;
     int Posicion, HorasActual, HorasTotales = 0, HorasRestantes;
@@ -342,6 +362,8 @@ int ** RegistrarHorasDeEstudio( int n, long int * Matriculadas, int ** Horario, 
                 Respuesta = -1; Respuesta2 = -1;
 
 
+
+                Recomendaciones(Horario, i, HorasRestantes);
                 while(Flag2 == false){
 
                     cout << endl << "Escoja las materias que quiere estudiar los " << dias[i] << ":" << endl;
@@ -452,6 +474,37 @@ int ** RegistrarHorasDeEstudio( int n, long int * Matriculadas, int ** Horario, 
     }
 
     return Horario;
+}
+void CrearHorario( char * Pensum[][4], int** Horario){
+    const char * dias[7] = {" -------LUNES-------", " -------MARTES------", " -----MIERCOLES-----", " -------JUEVES------", " ------VIERNES------", " -------SABADO------", " ------DOMINGO------"}; int C; int K;
+    long int Posición; ofstream folder;
+    folder.open("Horario.txt");
+
+    folder << "     ";
+    for (C = 0; C < 7; C++){
+        folder << dias[C];
+    }
+    folder << endl;
+
+
+    for (K = 0; K < 24; K++){
+        folder << K << ":00";
+        if (K < 10){
+            folder << " ";
+        }
+        for (C = 0; C < 7; C++){
+            Posición = buscar_entero_pensum(Horario[C][K], Pensum);
+            if (Posición == -1){
+                folder << " -------------------";
+            }
+            else{
+                folder << Pensum[Posición][1];
+            }
+        }
+        folder << endl;
+    }
+    folder.close();
+
 }
 
 #endif // FUNCIONES_H
