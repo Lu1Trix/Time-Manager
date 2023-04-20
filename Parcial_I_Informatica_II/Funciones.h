@@ -322,8 +322,8 @@ void Recomendaciones( int** Horario, int Dia, int Horas_Semanales){
                 Count = 0;
             }
             if (Count == T_E_D){
-                cout << "[-> Te recomiendo elegir alguna hora de estudio dentro de este intervalo: " << MIN-T_E_D+1 << "-" << MIN << endl;
-                cout << "[-> Te ayudara a concentrarte mejor." << endl;
+                cout << "[-> Te recomiendo elegir alguna hora de estudio dentro de este intervalo: " << MIN-T_E_D+1 << "-" << MIN-1 << endl;
+                Count = 0;
             }
             if (MIN > 18){
                 break;
@@ -452,9 +452,11 @@ int ** RegistrarHorasDeEstudio( int n, long int * Matriculadas, int ** Horario, 
                         cin >> Respuesta2;
 
                         if(Respuesta2 == 1){ Flag2 = false; }
-                        else Flag2 = true;
+                        else {
+                            Flag2 = true;
+                            MostrarHorario(Pensum, Horario);
 
-
+                        }
                     }
 
                     else{cout << endl << "La materia seleccionada no tiene mas horas de estudio asignables" << endl;}

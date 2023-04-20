@@ -6,6 +6,7 @@ using namespace std;
 int main()
 {
 
+
     // [1] Extración materias pensúm Ing. Electrónica;
     //      *Apertura y lectura de archivo;
 
